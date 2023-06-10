@@ -1,4 +1,5 @@
   _G.Studs = false
+  _G.OldHead = false -- breaks the anims
  game.Players.LocalPlayer.Character:BreakJoints()
    game.Players.LocalPlayer.Character=nil
    Connection = game.Workspace.DescendantAdded:Connect(function(c)
@@ -104,6 +105,21 @@ for i,v in pairs(Figure:GetChildren()) do
 if v:IsA("Part") then
 v.Material = Enum.Material.SmoothPlastic
 end
+end
+if _G.OldHead == true then
+Figure.Humanoid.RequiresNeck = false
+local a = Head:Clone()
+local b = Figure.Torso.Neck:Clone()
+a.Parent = Figure
+a.Name = "FakeHead"
+a.Transparency = 1
+a.Mesh.Scale = Vector3.new(1.3,1.3,1.3)
+b.Parent = Figure.Torso
+b.Name = "NeckB"
+b.Part1 = a
+a.face.Texture = "rbxassetid://13702263984"
+Head.Mesh.Scale = Vector3.new(1,1,1)
+Head.Mesh.MeshId = "rbxassetid://3690111255"
 end
 Head.face.Texture = "rbxassetid://13702263984"
 if _G.Studs == true then
@@ -212,7 +228,6 @@ Humanoid.Jumping:connect(function(state) onSJ(state, sJumping) end)
 Humanoid.GettingUp:connect(function(state) onSGU(state, sGettingUp) end)
 Humanoid.FreeFalling:connect(function(state) onSFF(state, sFreeFalling) end)
 Humanoid.FallingDown:connect(function(state) onState(state, sFallingDown) end)
-
 
 local l__LocalPlayer__1 = game.Players.LocalPlayer;
 local v2 = l__LocalPlayer__1.Character or l__LocalPlayer__1.CharacterAdded:Wait();
@@ -767,7 +782,7 @@ local Figure = game.Players.LocalPlayer.Character
 local Torso = waitForChild(Figure, "Torso")
 local Root = waitForChild(Figure, "HumanoidRootPart")
 local gaymen = game:GetService("RunService").Heartbeat:Connect(function()
-				Root.CFrame *= CFrame.new(0, 0.001, 0)
+				Root.CFrame *= CFrame.new(0, 0.01, 0)
 				if Figure.Humanoid.HipHeight >= 2 then
 					Figure.Humanoid.HipHeight = 0
 				end
