@@ -1,5 +1,5 @@
   _G.Studs = false
-  _G.OldHead = false -- breaks the anims
+  _G.OldHead = true -- breaks the anims
  game.Players.LocalPlayer.Character:BreakJoints()
    game.Players.LocalPlayer.Character=nil
    Connection = game.Workspace.DescendantAdded:Connect(function(c)
